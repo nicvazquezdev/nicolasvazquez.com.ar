@@ -2,55 +2,69 @@ import { useState, useCallback, useRef, RefObject } from "react";
 import { useCanHover } from "./useMediaQuery";
 
 interface HoverStyle {
-  left: number;
-  width: number;
+  offset: number;
+  size: number;
   opacity: number;
+  animate: boolean;
 }
 
 interface UseHoverHighlightReturn {
   hoverStyle: HoverStyle;
   handleMouseEnter: (e: React.MouseEvent<HTMLElement>) => void;
   handleMouseLeave: () => void;
-  navRef: RefObject<HTMLDivElement | null>;
+  containerRef: RefObject<HTMLDivElement | null>;
 }
 
-/**
- * Custom hook for hover highlight effect on navigation elements
- * @returns Object with hover style, event handlers, and ref
- */
-export function useHoverHighlight(): UseHoverHighlightReturn {
-  const navRef = useRef<HTMLDivElement>(null);
+export function useHoverHighlight(
+  direction: "horizontal" | "vertical" = "horizontal"
+): UseHoverHighlightReturn {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [hoverStyle, setHoverStyle] = useState<HoverStyle>({
-    left: 0,
-    width: 0,
+    offset: 0,
+    size: 0,
     opacity: 0,
+    animate: true,
   });
 
   const canHover = useCanHover();
 
-  // Use ref to access canHover without adding it to dependencies
   const canHoverRef = useRef(canHover);
   canHoverRef.current = canHover;
+
+  const directionRef = useRef(direction);
+  directionRef.current = direction;
+
+  const isInsideRef = useRef(false);
 
   const handleMouseEnter = useCallback((e: React.MouseEvent<HTMLElement>) => {
     if (!canHoverRef.current) return;
 
     const element = e.currentTarget;
-    const nav = navRef.current;
-    if (!nav) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-    const navRect = nav.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
     const elementRect = element.getBoundingClientRect();
 
+    const isVertical = directionRef.current === "vertical";
+    const newOffset = isVertical
+      ? elementRect.top - containerRect.top
+      : elementRect.left - containerRect.left;
+    const newSize = isVertical ? elementRect.height : elementRect.width;
+
+    const shouldAnimate = isInsideRef.current;
+    isInsideRef.current = true;
+
     setHoverStyle({
-      left: elementRect.left - navRect.left,
-      width: elementRect.width,
+      offset: newOffset,
+      size: newSize,
       opacity: 1,
+      animate: shouldAnimate,
     });
   }, []);
 
-  // Use functional setState for stable callback
   const handleMouseLeave = useCallback(() => {
+    isInsideRef.current = false;
     setHoverStyle((prev) => ({ ...prev, opacity: 0 }));
   }, []);
 
@@ -58,6 +72,6 @@ export function useHoverHighlight(): UseHoverHighlightReturn {
     hoverStyle,
     handleMouseEnter,
     handleMouseLeave,
-    navRef,
+    containerRef,
   };
 }

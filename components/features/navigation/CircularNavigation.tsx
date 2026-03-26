@@ -78,7 +78,7 @@ export default function CircularNavigation({
           <div className="flex-shrink-0 mx-8">
             <Link
               href={centerLink.href}
-              className="text-gray-400 hover:text-white text-sm underline underline-offset-2"
+              className="text-gray-400 hover:text-white text-sm"
             >
               {centerLink.label}
             </Link>

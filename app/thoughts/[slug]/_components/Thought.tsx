@@ -3,10 +3,8 @@
 import Link from "next/link";
 import ReactMarkdown, { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { useState, useMemo, useCallback } from "react";
 import { ThoughtInterface } from "@/types";
 import { CircularNavigation } from "@/components/features/navigation";
-import { FontSizeControl } from "@/components/interactive";
 
 // Hoist static markdown components outside the component to avoid recreation
 const staticMarkdownComponents: Partial<Components> = {
@@ -88,49 +86,26 @@ interface ThoughtProps {
   nextPost: ThoughtInterface | null;
 }
 
+const markdownComponents: Partial<Components> = {
+  ...staticMarkdownComponents,
+  p: ({ children }) => (
+    <p className="text-gray-300 leading-relaxed mb-4">{children}</p>
+  ),
+  li: ({ children }) => (
+    <li className="text-gray-300 leading-relaxed">{children}</li>
+  ),
+  blockquote: ({ children }) => (
+    <blockquote className="border-l-4 border-gray-600 pl-4 italic text-gray-400 my-4">
+      {children}
+    </blockquote>
+  ),
+};
+
 export default function Thought({
   post,
   previousPost,
   nextPost,
 }: ThoughtProps) {
-  const [fontSize, setFontSize] = useState<number>(18);
-
-  // Use useCallback with functional setState for stable callback reference
-  const handleFontSizeChange = useCallback((newSize: number) => {
-    setFontSize(newSize);
-  }, []);
-
-  // Memoize components that depend on fontSize to avoid recreation
-  const markdownComponents = useMemo<Partial<Components>>(
-    () => ({
-      ...staticMarkdownComponents,
-      p: ({ children }) => (
-        <p
-          className="text-gray-300 leading-relaxed mb-4"
-          style={{ fontSize: `${fontSize}px` }}
-        >
-          {children}
-        </p>
-      ),
-      li: ({ children }) => (
-        <li
-          className="text-gray-300 leading-relaxed"
-          style={{ fontSize: `${fontSize}px` }}
-        >
-          {children}
-        </li>
-      ),
-      blockquote: ({ children }) => (
-        <blockquote
-          className="border-l-4 border-gray-600 pl-4 italic text-gray-400 my-4"
-          style={{ fontSize: `${fontSize}px` }}
-        >
-          {children}
-        </blockquote>
-      ),
-    }),
-    [fontSize]
-  );
 
   // Pre-format the date to avoid IIFE in JSX
   const formattedDate = formatPostDate(post.date);
@@ -146,12 +121,6 @@ export default function Thought({
             ← back to home
           </Link>
 
-          <div className="hidden md:block mt-6">
-            <FontSizeControl
-              defaultSize={18}
-              onFontSizeChange={handleFontSizeChange}
-            />
-          </div>
         </nav>
 
         <article

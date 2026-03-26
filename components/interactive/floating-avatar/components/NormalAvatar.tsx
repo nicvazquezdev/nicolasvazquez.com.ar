@@ -43,7 +43,7 @@ export function NormalAvatar({
 
   return (
     <div
-      className="hidden md:block absolute right-0 top-40 md:top-80 md:right-120"
+      className="hidden md:block absolute right-0 top-40 md:top-80 md:right-80"
       style={{
         transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
         transition: `transform ${ANIMATION.floatingAvatar.parallaxEasing}s ease-out`,

@@ -14,21 +14,25 @@ export default function InfoNavigation({
   activeInfo,
   onTabClick,
 }: InfoNavigationProps) {
-  const { hoverStyle, handleMouseEnter, handleMouseLeave, navRef } =
+  const { hoverStyle, handleMouseEnter, handleMouseLeave, containerRef } =
     useHoverHighlight();
 
   return (
     <div
-      ref={navRef}
+      ref={containerRef}
       className="relative flex flex-wrap gap-1 text-sm -ml-3"
       onMouseLeave={handleMouseLeave}
     >
       {/* Hover highlight background */}
       <div
-        className="absolute top-0 h-full rounded-lg bg-[#232323] transition-all duration-300 ease-in-out pointer-events-none"
+        className={`absolute top-0 h-full rounded-lg bg-[#232323] pointer-events-none ${
+          hoverStyle.animate
+            ? "transition-all duration-300 ease-in-out"
+            : "transition-opacity duration-150"
+        }`}
         style={{
-          left: hoverStyle.left,
-          width: hoverStyle.width,
+          left: hoverStyle.offset,
+          width: hoverStyle.size,
           opacity: hoverStyle.opacity,
         }}
       />
