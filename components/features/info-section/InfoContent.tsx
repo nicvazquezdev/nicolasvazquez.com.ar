@@ -28,7 +28,7 @@ export default function InfoContent({ item }: InfoContentProps) {
       {/* Text content */}
       {item.content && (
         <div
-          className="whitespace-pre-line break-words overflow-hidden md:max-w-3xl md:text-lg"
+          className="whitespace-pre-line break-words overflow-hidden md:max-w-3xl md:text-base"
         >
           {linkifyText(item.content)}
         </div>
