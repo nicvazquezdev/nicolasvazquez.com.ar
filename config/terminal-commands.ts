@@ -38,7 +38,7 @@ export const TAB_TO_COMMAND: Record<string, string> = {
   thoughts: "ls -la thoughts/",
   me: "cat about.md",
   "open-source": "ls -la projects/",
-  "digital-nomad": "cat travels.log",
+  "digital-nomad": "cd digital-nomad/",
 };
 
 // Help text for the terminal

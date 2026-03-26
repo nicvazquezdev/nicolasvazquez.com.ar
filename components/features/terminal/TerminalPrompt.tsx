@@ -20,7 +20,13 @@ export default function TerminalPrompt() {
       return `cat thoughts/${slug}.md`;
     }
 
-    // Unknown path - show as failed cd command
+    // Digital nomad detail pages
+    if (pathname.startsWith("/digital-nomad/")) {
+      const slug = pathname.replace("/digital-nomad/", "");
+      return `cat digital-nomad/${slug}.md`;
+    }
+
+    // Unknown path
     return `cd ${pathname}`;
   };
 
