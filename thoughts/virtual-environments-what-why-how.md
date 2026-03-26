@@ -2,6 +2,7 @@
 title: "virtual environments: what, why, how"
 date: "21-09-2025"
 excerpt: "a simple guide to understanding why virtual environments exist, how they work, and how to use them to keep your python projects clean and isolated."
+hidden: true
 ---
 
 when you start with python, one of the first concepts that shows up is the _virtual environment_. but what exactly is it, and why do we need it?

@@ -6,5 +6,6 @@ export interface ThoughtInterface {
   date: string;
   excerpt: string;
   tags: string[];
+  hidden?: boolean;
   content: string;
 }

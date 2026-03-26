@@ -48,9 +48,11 @@ export const getAllPosts = cache((): ThoughtInterface[] => {
           date: matterResult.data.date || "",
           excerpt: matterResult.data.excerpt || "",
           tags: matterResult.data.tags || [],
+          hidden: matterResult.data.hidden || false,
           content: matterResult.content,
         };
-      });
+      })
+      .filter((post) => !post.hidden);
 
     // Sort posts by date (newest first)
     return allPostsData.sort((a, b) => {

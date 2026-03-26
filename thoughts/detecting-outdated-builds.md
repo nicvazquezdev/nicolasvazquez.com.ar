@@ -2,6 +2,7 @@
 title: "detecting outdated builds in dashboards"
 date: "23-09-2025"
 excerpt: "a real-world note on detecting outdated dashboards: the problem, the options i considered, and the final flow using an auto-generated version\_info.json with git\_sha."
+hidden: true
 ---
 
 we needed a reliable way to detect when dashboards were running on an outdated build and refresh them automatically. this became especially evident after some recent table updates didn’t appear in dashboards until users manually hard refresh’d each individual chart.

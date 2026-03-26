@@ -2,6 +2,7 @@
 title: "building a guestbook for my personal website"
 date: "24-09-2025"
 excerpt: "notes from a late-night idea: let visitors leave a signature on my site, without overbuilding the stack. trade-offs, mistakes, and the path to a simple guestbook."
+hidden: true
 ---
 
 ## tuesday night, 11:36pm

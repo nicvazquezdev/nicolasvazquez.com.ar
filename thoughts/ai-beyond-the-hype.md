@@ -2,6 +2,7 @@
 title: "the ai reality check: beyond the hype"
 date: "29-08-2025"
 excerpt: "ai isn’t failing — but the hype around it is. new studies reveal that 95% of corporate pilots stall, developers are actually slowed down, and many startups remain unprofitable. the problem isn’t the technology itself, but how we’re using it."
+hidden: true
 ---
 
 the leaps from gpt-3 to 3.5 to 4 felt transformative, but gpt-4.5 was only a small improvement, with costs rising enough to make companies question if the gain was worth it. progress is still happening, but the giant jumps seem to be slowing.
