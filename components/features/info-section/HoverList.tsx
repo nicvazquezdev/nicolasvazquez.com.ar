@@ -41,7 +41,7 @@ export default function HoverList({ items }: HoverListProps) {
           key={item.href}
           href={item.href}
           onMouseEnter={handleMouseEnter}
-          className="relative z-10 flex items-center justify-between py-3 px-4 rounded-lg cursor-pointer"
+          className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-0.5 py-3 px-4 rounded-lg cursor-pointer"
         >
           <span className="text-gray-300 text-sm font-medium">
             {item.label}
