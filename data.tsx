@@ -31,14 +31,14 @@ export const infoData: InfoData = {
               <path d="M3.5 3h5.5v5.5M9 3L3 9" />
             </svg>
           </Link>
-          , letting people describe interactive components in plain english
+          , letting people describe interactive components in natural language
           and have them generated directly inside their webflow site, already
           styled to match everything around it. before that, i spent a couple
           of years at <strong>Google</strong>.
         </p>
         <p>
           i don&rsquo;t come from a traditional cs background. most of what i
-          know came from building things, breaking them, fixing them, and
+          know came from building things, breaking and fixing them, and
           spending way too many nights deep in documentation.
         </p>
         <p>
