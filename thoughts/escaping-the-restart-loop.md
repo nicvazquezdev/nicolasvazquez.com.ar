@@ -4,8 +4,6 @@ date: "26-04-2026"
 excerpt: "eight hours debugging a Linux VM, a planned macOS VM blocked by Apple Silicon, and the realization that I was solving the wrong problem."
 ---
 
-# how I escaped the stash, checkout, restart loop
-
 running two branches of a thirty-service monorepo in parallel sounds simple. it is not.
 
 I don't mean two checkouts of the same repo on disk — that's `git worktree`, and it's a one-line solution. I mean two instances of the application **fully running at the same time**, each with its own backend, its own frontend, its own port, both reachable in the browser simultaneously, both serving real traffic from a logged-in session.
