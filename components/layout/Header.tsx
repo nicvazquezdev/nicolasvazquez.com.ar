@@ -1,36 +1,22 @@
-"use client";
-import Image from "next/image";
 import Link from "next/link";
-import { GlitchText, TypingText } from "@/components/ui";
 import SocialLinks from "./SocialLinks";
 
 export default function Header() {
   return (
-    <header className="mb-6 flex flex-col md:flex-row md:items-end gap-4">
-      <Link href="/">
-        <Image
-          src="/avatar.png"
-          alt="Avatar pixel art"
-          width={80}
-          height={117}
-          priority
-        />
-      </Link>
-
-      <div className="space-y-4">
-        <h2 className="text-gray-300 leading-relaxed text-lg md:text-base">
-          <GlitchText text="nicolás vazquez" className="text-white font-semibold" />{" "}
-          <TypingText
-            lines={[
-              "is a senior software engineer",
-              "from buenos aires, argentina",
-            ]}
-            speed={40}
-            delay={300}
-          />
-        </h2>
+    <header className="mb-14 md:mb-16">
+      <div className="flex items-baseline justify-between gap-6">
+        <Link href="/" className="group">
+          <h1 className="text-3xl md:text-4xl font-medium tracking-tight text-[var(--foreground)] leading-none">
+            nicolás vazquez
+          </h1>
+        </Link>
         <SocialLinks />
       </div>
+
+      <p className="mt-5 text-[18px] md:text-[19px] leading-relaxed text-[var(--muted-strong)]">
+        senior software engineer. i write here about systems, the work itself,
+        and the odd places it takes me. notes more than essays.
+      </p>
     </header>
   );
 }

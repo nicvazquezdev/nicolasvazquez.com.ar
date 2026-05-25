@@ -15,7 +15,7 @@ export interface NomadEntry {
 
 export interface InfoItem {
   title: string;
-  content?: string;
+  content?: string | React.ReactNode;
   subtitle?: string;
   links?: Link[];
   entries?: NomadEntry[];

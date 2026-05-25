@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   title: "nicolás vazquez",
   url: "https://nicolasvazquez.com.ar",
   description:
-    "senior software engineer from buenos aires, argentina. building fast, reliable, and enjoyable web experiences.",
+    "software engineer from buenos aires. notes about systems, the work itself, and the odd places it takes me.",
   author: {
     name: "Nicolás Vazquez",
     email: "contact@nicolasvazquez.com.ar",
@@ -19,11 +19,6 @@ export const SITE_CONFIG = {
   },
   images: {
     og: "https://nicolasvazquez.com.ar/avatar_og.jpg",
-    avatar: "/avatar.png",
-    floatingAvatar: "/floating-avatar.png",
-    floatingAvatarClicked: "/floating-cyber-avatar-clicked.png",
-    floatingAvatarCyber: "/floating-cyber-avatar.png",
-    floatingAvatarAttacking: "/cyber-avatar-attacking.png",
   },
   location: {
     city: "Buenos Aires",

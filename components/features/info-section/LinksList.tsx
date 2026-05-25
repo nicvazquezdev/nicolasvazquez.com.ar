@@ -1,18 +1,17 @@
 import Link from "next/link";
 import { Link as LinkType } from "@/types";
 
-// Hoist external link icon outside component to avoid recreation
 const externalLinkIcon = (
   <svg
-    width="12"
-    height="12"
+    width="11"
+    height="11"
     viewBox="0 0 12 12"
     fill="none"
     stroke="currentColor"
     strokeWidth="1.5"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className="inline-block ml-1 opacity-50 group-hover:opacity-70 transition-opacity"
+    className="inline-block ml-1 opacity-60 group-hover:opacity-100 transition-opacity"
     aria-hidden="true"
   >
     <path d="M3.5 3h5.5v5.5M9 3L3 9" />
@@ -25,14 +24,16 @@ interface LinksListProps {
 
 export default function LinksList({ links }: LinksListProps) {
   return (
-    <div className="space-y-3">
+    <ul className="space-y-2">
       {links.map((link, index) => (
-        <div
+        <li
           key={index}
-          className="w-full flex flex-col md:flex-row md:items-end gap-1 md:gap-2"
+          className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-3"
         >
           {link.date && (
-            <div className="text-gray-400 text-sm md:text-xs">{link.date}</div>
+            <span className="text-xs tabular-nums text-[var(--muted)] font-mono md:w-32 md:shrink-0">
+              {link.date}
+            </span>
           )}
           <Link
             href={link.url}
@@ -40,15 +41,15 @@ export default function LinksList({ links }: LinksListProps) {
             rel={
               link.url.startsWith("http") ? "noopener noreferrer" : undefined
             }
-            className="group inline-flex items-baseline hover:text-white text-sm md:text-base"
+            className="group inline-flex items-baseline text-[var(--foreground)] hover:text-[var(--accent)] transition-colors"
           >
-            <span className="border-b border-gray-400 group-hover:border-gray-300 pb-0.5">
+            <span className="underline underline-offset-4 decoration-[var(--muted)] group-hover:decoration-[var(--accent)]">
               {link.name}
             </span>
             {link.url.startsWith("http") ? externalLinkIcon : null}
           </Link>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

@@ -17,7 +17,7 @@ export const linkifyText = (text: string) => {
           href={part}
           target="_blank"
           rel="noopener noreferrer"
-          className="underline underline-offset-4 hover:text-white"
+          className="underline underline-offset-4 decoration-[var(--muted)] hover:text-[var(--accent)] hover:decoration-[var(--accent)] transition-colors"
         >
           {part}
         </Link>

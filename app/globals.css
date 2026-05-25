@@ -1,8 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #111;
-  --foreground: #ededed;
+  --background: #fbfbf9;
+  --foreground: #1a1a1a;
+  --muted: #6b7280;
+  --muted-strong: #4b5563;
+  --rule: #e5e5e0;
+  --accent: #8a3324;
+  --hover-bg: rgba(0, 0, 0, 0.04);
+
+  --font-sans: var(--font-garamond), "EB Garamond", "Iowan Old Style", Georgia,
+    ui-serif, serif;
+  --font-serif: var(--font-garamond), "EB Garamond", "Iowan Old Style", Georgia,
+    ui-serif, serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace,
+    SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --font-reading: var(--font-lora), "Lora", "Iowan Old Style", Georgia,
+    ui-serif, serif;
+}
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
 }
 
 @theme inline {
@@ -10,110 +30,156 @@
   --color-foreground: var(--foreground);
 }
 
+html {
+  background: var(--background);
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   margin: 0;
   padding: 0;
-  position: relative;
 }
 
-/* Floating animation for the pixel person */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+::selection {
+  background: rgba(138, 51, 36, 0.18);
+  color: inherit;
 }
 
-.animate-float {
-  animation: float 4s ease-in-out infinite;
+/* Long-form reading uses serif for a quieter, paper-like feel */
+.prose-reading {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #2a2a2a;
 }
 
-/* Terminal cursor blink */
-@keyframes blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  51%,
-  100% {
-    opacity: 0;
-  }
+.prose-reading p {
+  margin: 0 0 1.25em;
 }
 
-.animate-blink {
-  animation: blink 1s step-end infinite;
+.prose-reading h1,
+.prose-reading h2,
+.prose-reading h3 {
+  font-family: var(--font-serif);
+  color: #111;
+  letter-spacing: -0.005em;
 }
 
-/* Cyberpunk glitch effect */
-@keyframes cyber-glitch {
-  0% {
-    clip-path: inset(40% 0 61% 0);
-    translate: 0 0;
-  }
-  10% {
-    clip-path: inset(92% 0 1% 0);
-    translate: -2px 2px;
-  }
-  20% {
-    clip-path: inset(43% 0 1% 0);
-    translate: 2px -1px;
-  }
-  30% {
-    clip-path: inset(25% 0 58% 0);
-    translate: 0 0;
-  }
-  40% {
-    clip-path: inset(54% 0 7% 0);
-    translate: -2px 2px;
-  }
-  50% {
-    clip-path: inset(58% 0 43% 0);
-    translate: 2px 1px;
-  }
-  60% {
-    clip-path: inset(73% 0 18% 0);
-    translate: -1px -2px;
-  }
-  70% {
-    clip-path: inset(6% 0 68% 0);
-    translate: 2px 0;
-  }
-  80% {
-    clip-path: inset(27% 0 29% 0);
-    translate: -2px 1px;
-  }
-  90% {
-    clip-path: inset(89% 0 3% 0);
-    translate: 1px -1px;
-  }
-  100% {
-    clip-path: inset(40% 0 61% 0);
-    translate: 0 0;
-  }
+.prose-reading h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin: 2.25em 0 0.75em;
 }
 
-.animate-cyber-glitch {
-  animation: cyber-glitch 0.4s steps(2, end) infinite;
+.prose-reading h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.75em 0 0.5em;
 }
 
-/* Shake animation for attack mode */
-@keyframes shake {
-  0%, 100% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(-2px, 1px);
-  }
-  50% {
-    transform: translate(2px, -1px);
-  }
-  75% {
-    transform: translate(-1px, -1px);
-  }
+.prose-reading a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #c7c7c0;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 150ms ease;
 }
 
+.prose-reading a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.prose-reading code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: #f1efe9;
+  color: #1a1a1a;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+.prose-reading pre {
+  background: #f4f2ec;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 1.5em 0;
+}
+
+.prose-reading pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+.prose-reading blockquote {
+  border-left: 2px solid #c7c7c0;
+  margin: 1.5em 0;
+  padding-left: 1.1em;
+  color: #555;
+  font-style: italic;
+}
+
+.prose-reading ul,
+.prose-reading ol {
+  padding-left: 1.4em;
+  margin: 0 0 1.25em;
+}
+
+.prose-reading ul {
+  list-style-type: disc;
+}
+
+.prose-reading ol {
+  list-style-type: decimal;
+}
+
+.prose-reading li {
+  margin: 0.35em 0;
+  padding-left: 0.25em;
+}
+
+.prose-reading li::marker {
+  color: var(--muted);
+}
+
+.prose-reading hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2.5em 0;
+}
+
+.prose-reading strong {
+  color: #111;
+  font-weight: 600;
+}
+
+.prose-reading a strong {
+  color: inherit;
+}
+
+/* Blog post body — Lora is tuned for long-form on-screen reading.
+   Inherits everything else from .prose-reading. */
+.prose-post {
+  font-family: var(--font-reading);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.prose-post h1,
+.prose-post h2,
+.prose-post h3 {
+  font-family: var(--font-reading);
+}

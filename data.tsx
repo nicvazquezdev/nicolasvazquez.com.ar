@@ -1,47 +1,63 @@
+import Link from "next/link";
 import { InfoData, SocialLink } from "./types";
 
 export const infoData: InfoData = {
   me: {
-    title: "me",
-    subtitle: "who i am and what i do",
-    content: `i build things.
-
-i've been doing this for over 6 years — started by teaching myself, and over the past couple of years i've been working remotely while traveling. hopping between countries, staying a week here and there, figuring things out as i go. i've been to over 15 countries so far, and along the way ended up at companies like google and webflow.
-
-most of my career has been about taking broken or outdated systems and making them work well. rewriting legacy platforms, designing services from scratch, building tools that people actually depend on every day. i care about clean architecture, but i also care about shipping. the best engineers know when to do each.
-
-i don't have a cs degree. i learned by building stuff, breaking stuff, and reading a lot of documentation at 3am. i'm scrappy and i figure things out.
-
-i'm from buenos aires, argentina. no matter where i go, i always end up coming back home.
-when i'm not coding i'm probably training jiu jitsu, reading, or planning where to go next.
-
-corporate version here:
-`,
-    links: [
-      {
-        url: "https://linkedin.com/in/nicvazquez",
-        name: "linkedin.com/in/nicvazquez",
-      },
-    ],
-  },
-  "open-source": {
-    title: "open source",
-    subtitle: "things i build in the open",
-    links: [
-      {
-        url: "https://github.com/nicvazquezdev/hispano-lang",
-        name: "hispano-lang ⭐",
-      },
-      {
-        url: "https://github.com/nicvazquezdev/hispanolang.com",
-        name: "hispano-lang-website",
-      },
-    ],
+    title: "about",
+    subtitle: "",
+    content: (
+      <>
+        <p>
+          i&rsquo;ve been building software for about six years now, currently
+          at <strong>Webflow</strong> working on applied ai. my work there is
+          focused on{" "}
+          <Link
+            href="https://webflow.com/updates/ai-code-components"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <strong>AI code components</strong>
+            <svg
+              width="11"
+              height="11"
+              viewBox="0 0 12 12"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="inline-block ml-1 -mt-0.5 align-middle opacity-60"
+              aria-hidden="true"
+            >
+              <path d="M3.5 3h5.5v5.5M9 3L3 9" />
+            </svg>
+          </Link>
+          , letting people describe interactive components in plain english
+          and have them generated directly inside their webflow site, already
+          styled to match everything around it. before that, i spent a couple
+          of years at <strong>Google</strong>.
+        </p>
+        <p>
+          i don&rsquo;t come from a traditional cs background. most of what i
+          know came from building things, breaking them, fixing them, and
+          spending way too many nights deep in documentation.
+        </p>
+        <p>
+          for the past couple of years, i&rsquo;ve been working while moving
+          around a lot, usually staying a week or two in one place before
+          heading somewhere else. i&rsquo;ve done that across more than
+          fifteen countries so far. part of it is curiosity. i just enjoy
+          waking up somewhere unfamiliar and figuring out the rhythm of a new
+          place. but i always end up back in <strong>Buenos Aires</strong>{" "}
+          eventually. my
+          family&rsquo;s here, and honestly, so is the food i miss the most.
+        </p>
+      </>
+    ),
   },
   "digital-nomad": {
-    title: "digital nomad",
-    subtitle:
-      "i write code wherever i find coffee and wi-fi. here's my journey:",
+    title: "travels",
+    subtitle: "notes from working remotely across ~15 countries.",
     entries: [
       {
         slug: "japan-2",

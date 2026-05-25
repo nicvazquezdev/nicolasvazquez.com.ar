@@ -18,7 +18,7 @@ export default function StructuredData() {
           height: 630,
         },
         sameAs: [SITE_CONFIG.social.github, SITE_CONFIG.social.linkedin],
-        jobTitle: "Senior Software Engineer",
+        jobTitle: "Software Engineer",
         worksFor: {
           "@type": "Organization",
           name: "Google",
@@ -53,7 +53,7 @@ export default function StructuredData() {
         ],
         knowsLanguage: ["en", "es"],
         description:
-          "Senior Software Engineer with 5+ years of experience designing, building, and evolving scalable web platforms across the stack. Specializes in modern JavaScript ecosystems and has led complex initiatives including legacy system migrations and infrastructure modernization.",
+          "Software engineer from Buenos Aires. Writes notes about systems, the work itself, and the odd places it takes him.",
       },
       {
         "@type": "WebSite",
@@ -61,7 +61,7 @@ export default function StructuredData() {
         url: SITE_CONFIG.url,
         name: SITE_CONFIG.name,
         description:
-          "Personal website and blog of Nicolás Vazquez, Senior Software Engineer. Notes on software engineering, web development, and building scalable applications.",
+          "Personal site of Nicolás Vazquez. Notes on systems, software, and the work itself.",
         publisher: {
           "@id": `${SITE_CONFIG.url}/#person`,
         },
@@ -77,7 +77,7 @@ export default function StructuredData() {
         url: SITE_CONFIG.url,
         name: "Thoughts",
         description:
-          "Notes, experiments, and challenges from a senior software engineer building for the web.",
+          "Notes and experiments from a software engineer. Mostly about the work itself.",
         publisher: {
           "@id": `${SITE_CONFIG.url}/#person`,
         },
@@ -93,7 +93,7 @@ export default function StructuredData() {
         "@type": "WebPage",
         "@id": `${SITE_CONFIG.url}/#webpage`,
         url: SITE_CONFIG.url,
-        name: `${SITE_CONFIG.name} - Senior Software Engineer`,
+        name: SITE_CONFIG.name,
         isPartOf: {
           "@id": `${SITE_CONFIG.url}/#website`,
         },
@@ -101,7 +101,7 @@ export default function StructuredData() {
           "@id": `${SITE_CONFIG.url}/#person`,
         },
         description:
-          "Portfolio and thoughts from Nicolás Vazquez, Senior Software Engineer with expertise in React, Next.js, TypeScript, and scalable web platforms.",
+          "Personal site and notes from Nicolás Vazquez. Writing about systems and software.",
         breadcrumb: {
           "@type": "BreadcrumbList",
           itemListElement: [

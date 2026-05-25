@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { NavigationItem } from "@/types";
 
-// Hoist static SVG icons outside component to avoid recreation
 const chevronLeftIcon = (
   <svg
-    className="w-4 h-4"
+    className="w-3.5 h-3.5"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -20,7 +19,7 @@ const chevronLeftIcon = (
 
 const chevronRightIcon = (
   <svg
-    className="w-4 h-4"
+    className="w-3.5 h-3.5"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -51,51 +50,41 @@ export default function CircularNavigation({
   centerLink,
 }: CircularNavigationProps) {
   return (
-    <nav
-      className="mt-12 pt-8 border-t border-gray-800"
-      aria-label="Post navigation"
-    >
-      <div className="flex justify-between items-center">
-        {/* Previous Item */}
+    <nav className="mt-16" aria-label="Post navigation">
+      <div className="flex justify-between items-center gap-4 text-sm">
         <div className="flex-1">
           {previousItem ? (
             <Link
               href={`${basePath}/${previousItem.slug}`}
-              className="group flex items-center space-x-3 text-gray-400 hover:text-white"
+              className="group inline-flex items-center gap-2 text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
             >
-              <div className="flex items-center space-x-2">
-                {chevronLeftIcon}
-                <span className="text-sm hidden md:block">
-                  {previousItem.title}
-                </span>
-              </div>
+              {chevronLeftIcon}
+              <span className="hidden md:inline">{previousItem.title}</span>
+              <span className="md:hidden">previous</span>
             </Link>
           ) : null}
         </div>
 
-        {/* Center Link */}
         {centerLink ? (
-          <div className="flex-shrink-0 mx-8">
+          <div className="flex-shrink-0">
             <Link
               href={centerLink.href}
-              className="text-gray-400 hover:text-white text-sm"
+              className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
             >
               {centerLink.label}
             </Link>
           </div>
         ) : null}
 
-        {/* Next Item */}
         <div className="flex-1 flex justify-end">
           {nextItem ? (
             <Link
               href={`${basePath}/${nextItem.slug}`}
-              className="group flex items-center space-x-3 text-gray-400 hover:text-white"
+              className="group inline-flex items-center gap-2 text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
             >
-              <div className="flex items-center space-x-2">
-                <span className="text-sm hidden md:block">{nextItem.title}</span>
-                {chevronRightIcon}
-              </div>
+              <span className="hidden md:inline">{nextItem.title}</span>
+              <span className="md:hidden">next</span>
+              {chevronRightIcon}
             </Link>
           ) : null}
         </div>

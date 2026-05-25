@@ -3,17 +3,17 @@ import { socialLinks } from "@/data";
 
 export default function SocialLinks() {
   return (
-    <div className="flex gap-4">
+    <div className="flex items-center gap-4 text-xs font-mono">
       {socialLinks.map((social) => (
         <Link
           key={social.name}
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="transition-colors duration-200"
+          className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
           aria-label={social.name}
         >
-          {social.icon}
+          {social.name.toLowerCase()}
         </Link>
       ))}
     </div>

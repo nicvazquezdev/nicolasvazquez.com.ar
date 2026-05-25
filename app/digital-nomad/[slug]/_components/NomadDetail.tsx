@@ -14,48 +14,46 @@ export default function NomadDetail({
   nextEntry,
 }: NomadDetailProps) {
   return (
-    <main className="pt-6">
-      <div className="w-full max-w-4xl">
-        <nav className="mb-4 md:mb-10" aria-label="Breadcrumb">
-          <Link
-            href="/?tab=digital-nomad"
-            className="text-gray-400 hover:text-white text-sm underline underline-offset-2"
-          >
-            ← back to travels
-          </Link>
-        </nav>
+    <article className="pt-2">
+      <nav className="mb-10" aria-label="Breadcrumb">
+        <Link
+          href="/#digital-nomad"
+          className="text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+        >
+          ← back
+        </Link>
+      </nav>
 
-        <article className="space-y-6 min-h-[50vh]">
-          <header className="space-y-2">
-            <h1 className="text-3xl md:text-4xl font-bold text-white">
-              {entry.country}
-            </h1>
-            <p className="text-gray-500 text-sm">{entry.date}</p>
-          </header>
+      <header className="mb-10">
+        <h1 className="text-2xl md:text-[28px] font-medium tracking-tight text-[var(--foreground)] leading-tight">
+          {entry.country}
+        </h1>
+        <p className="mt-3 text-xs font-mono tabular-nums text-[var(--muted)]">
+          {entry.date}
+        </p>
+      </header>
 
-          <div className="text-gray-300 leading-relaxed whitespace-pre-line md:max-w-3xl md:text-lg">
-            {entry.content}
-          </div>
-        </article>
-
-        <CircularNavigation
-          previousItem={
-            previousEntry
-              ? { slug: previousEntry.slug, title: previousEntry.country }
-              : null
-          }
-          nextItem={
-            nextEntry
-              ? { slug: nextEntry.slug, title: nextEntry.country }
-              : null
-          }
-          basePath="/digital-nomad"
-          centerLink={{
-            href: "/?tab=digital-nomad",
-            label: "all entries",
-          }}
-        />
+      <div className="prose-reading prose-post max-w-none whitespace-pre-line">
+        {entry.content}
       </div>
-    </main>
+
+      <CircularNavigation
+        previousItem={
+          previousEntry
+            ? { slug: previousEntry.slug, title: previousEntry.country }
+            : null
+        }
+        nextItem={
+          nextEntry
+            ? { slug: nextEntry.slug, title: nextEntry.country }
+            : null
+        }
+        basePath="/digital-nomad"
+        centerLink={{
+          href: "/#digital-nomad",
+          label: "index",
+        }}
+      />
+    </article>
   );
 }

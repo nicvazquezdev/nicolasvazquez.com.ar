@@ -6,77 +6,25 @@ import remarkGfm from "remark-gfm";
 import { ThoughtInterface } from "@/types";
 import { CircularNavigation } from "@/components/features/navigation";
 
-// Hoist static markdown components outside the component to avoid recreation
-const staticMarkdownComponents: Partial<Components> = {
-  h1: ({ children }) => (
-    <h1 className="text-2xl md:text-3xl font-bold text-white mb-4">
-      {children}
-    </h1>
-  ),
-  h2: ({ children }) => (
-    <h2 className="text-xl md:text-2xl font-semibold text-white mb-3 mt-8">
-      {children}
-    </h2>
-  ),
-  h3: ({ children }) => (
-    <h3 className="text-lg md:text-xl font-semibold text-white mb-2 mt-6">
-      {children}
-    </h3>
-  ),
-  code: ({ children, className }) => {
-    const isInline = !className;
-    if (isInline) {
-      return (
-        <code className="bg-gray-800 text-gray-200 px-1 py-0.5 rounded text-sm font-mono">
-          {children}
-        </code>
-      );
-    }
-    return (
-      <code className="block bg-gray-900 text-gray-200 p-4 rounded-lg overflow-x-auto font-mono text-sm">
-        {children}
-      </code>
-    );
-  },
-  pre: ({ children }) => (
-    <pre className="bg-gray-900 text-gray-200 p-4 rounded-lg overflow-x-auto mb-4">
-      {children}
-    </pre>
-  ),
-  ul: ({ children }) => (
-    <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4">
-      {children}
-    </ul>
-  ),
-  ol: ({ children }) => (
-    <ol className="list-decimal list-inside text-gray-300 space-y-2 mb-4">
-      {children}
-    </ol>
-  ),
+const markdownComponents: Partial<Components> = {
   a: ({ href, children }) => (
     <Link
       href={href || "#"}
-      className="text-white underline underline-offset-2 hover:text-gray-300"
       target={href?.startsWith("http") ? "_blank" : undefined}
       rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
     >
       {children}
     </Link>
   ),
-  em: ({ children }) => <em className="italic text-gray-300">{children}</em>,
-  strong: ({ children }) => (
-    <strong className="font-bold text-white">{children}</strong>
-  ),
 };
 
-// Helper to format date - hoisted to avoid recreation
 const formatPostDate = (date: string): string => {
   const [day, month, year] = date.split("-");
   const dateStr = `${year}-${month}-${day}`;
-  return new Date(dateStr + "T00:00:00").toLocaleDateString("en-GB", {
+  return new Date(dateStr + "T00:00:00").toLocaleDateString("en-US", {
     year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
+    month: "long",
+    day: "numeric",
   });
 };
 
@@ -86,89 +34,63 @@ interface ThoughtProps {
   nextPost: ThoughtInterface | null;
 }
 
-const markdownComponents: Partial<Components> = {
-  ...staticMarkdownComponents,
-  p: ({ children }) => (
-    <p className="text-gray-300 leading-relaxed mb-4">{children}</p>
-  ),
-  li: ({ children }) => (
-    <li className="text-gray-300 leading-relaxed">{children}</li>
-  ),
-  blockquote: ({ children }) => (
-    <blockquote className="border-l-4 border-gray-600 pl-4 italic text-gray-400 my-4">
-      {children}
-    </blockquote>
-  ),
-};
-
 export default function Thought({
   post,
   previousPost,
   nextPost,
 }: ThoughtProps) {
-
-  // Pre-format the date to avoid IIFE in JSX
   const formattedDate = formatPostDate(post.date);
 
   return (
-    <main className="pt-6">
-      <div className="w-full max-w-4xl">
-        <nav className="mb-4 md:mb-10" aria-label="Breadcrumb">
-          <Link
-            href="/"
-            className="text-gray-400 hover:text-white text-sm underline underline-offset-2"
-          >
-            ← back to home
-          </Link>
-
-        </nav>
-
-        <article
-          className="space-y-6"
-          itemScope
-          itemType="https://schema.org/BlogPosting"
+    <article className="pt-2" itemScope itemType="https://schema.org/BlogPosting">
+      <nav className="mb-10" aria-label="Breadcrumb">
+        <Link
+          href="/"
+          className="text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
         >
-          <header className="space-y-4">
-            <h1 className="text-3xl md:text-4xl font-bold" itemProp="headline">
-              {post.title}
-            </h1>
+          ← back
+        </Link>
+      </nav>
 
-            <p className="text-gray-400 text-md">{post.excerpt}</p>
+      <header className="mb-10">
+        <h1
+          className="text-2xl md:text-[28px] font-medium tracking-tight text-[var(--foreground)] leading-tight"
+          itemProp="headline"
+        >
+          {post.title}
+        </h1>
+        {post.excerpt && (
+          <p className="mt-3 text-[15px] text-[var(--muted-strong)] leading-relaxed max-w-none">
+            {post.excerpt}
+          </p>
+        )}
+        <time
+          dateTime={post.date}
+          itemProp="datePublished"
+          className="mt-4 block text-xs font-mono tabular-nums text-[var(--muted)]"
+        >
+          {formattedDate}
+        </time>
+      </header>
 
-            <div className="text-gray-400 text-sm space-y-2">
-              <time
-                dateTime={post.date}
-                itemProp="datePublished"
-                className="block"
-              >
-                {formattedDate}
-              </time>
-            </div>
-          </header>
-
-          <div
-            className="prose prose-invert prose-gray max-w-none"
-            itemProp="articleBody"
-          >
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              components={markdownComponents}
-            >
-              {post.content}
-            </ReactMarkdown>
-          </div>
-        </article>
-
-        <CircularNavigation
-          previousItem={previousPost}
-          nextItem={nextPost}
-          basePath="/thoughts"
-          centerLink={{
-            href: "/",
-            label: "all thoughts",
-          }}
-        />
+      <div className="prose-reading prose-post max-w-none" itemProp="articleBody">
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          components={markdownComponents}
+        >
+          {post.content}
+        </ReactMarkdown>
       </div>
-    </main>
+
+      <CircularNavigation
+        previousItem={previousPost}
+        nextItem={nextPost}
+        basePath="/thoughts"
+        centerLink={{
+          href: "/",
+          label: "index",
+        }}
+      />
+    </article>
   );
 }
