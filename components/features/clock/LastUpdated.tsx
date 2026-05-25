@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { ANIMATION } from "@/config";
 
 interface LastUpdatedProps {
   lastCommitDate: string;
@@ -48,7 +47,7 @@ export default function LastUpdated({ lastCommitDate }: LastUpdatedProps) {
 
     const interval = setInterval(() => {
       setTimeAgo(calculateTimeAgo());
-    }, ANIMATION.lastUpdated.updateInterval);
+    }, MS_PER_MINUTE);
 
     return () => clearInterval(interval);
   }, [calculateTimeAgo]);

@@ -1,8 +1,6 @@
 import { InfoData } from "@/types";
-import { linkifyText } from "@/lib/utils";
 import Section from "./Section";
 import PostList from "./PostList";
-import LinksList from "./LinksList";
 
 interface SectionsProps {
   data: InfoData;
@@ -10,13 +8,13 @@ interface SectionsProps {
 
 /**
  * Section order is fixed independent of data key order so the home page
- * reads as: about → writing → travels.
+ * reads as: about → thoughts → travels.
  */
-const ORDER: Array<{ key: string; label: string }> = [
+const ORDER = [
   { key: "me", label: "ABOUT" },
   { key: "thoughts", label: "THOUGHTS" },
   { key: "digital-nomad", label: "TRAVELS" },
-];
+] as const;
 
 export default function Sections({ data }: SectionsProps) {
   return (
@@ -25,13 +23,6 @@ export default function Sections({ data }: SectionsProps) {
         const item = data[key];
         if (!item) return null;
 
-        const internalLinks = item.links?.filter(
-          (l) => l.date && l.url.startsWith("/")
-        );
-        const externalLinks = item.links?.filter(
-          (l) => !l.date || !l.url.startsWith("/")
-        );
-
         return (
           <Section key={key} id={key} label={label}>
             {item.content && (
@@ -39,13 +30,7 @@ export default function Sections({ data }: SectionsProps) {
                 className="prose-reading"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                {typeof item.content === "string" ? (
-                  <div className="whitespace-pre-line">
-                    {linkifyText(item.content)}
-                  </div>
-                ) : (
-                  item.content
-                )}
+                {item.content}
               </div>
             )}
 
@@ -59,20 +44,14 @@ export default function Sections({ data }: SectionsProps) {
               />
             )}
 
-            {internalLinks && internalLinks.length > 0 && (
+            {item.links && item.links.length > 0 && (
               <PostList
-                items={internalLinks.map((l) => ({
+                items={item.links.map((l) => ({
                   href: l.url,
                   label: l.name,
                   meta: l.date,
                 }))}
               />
-            )}
-
-            {externalLinks && externalLinks.length > 0 && (
-              <div className={item.content ? "mt-6" : ""}>
-                <LinksList links={externalLinks} />
-              </div>
             )}
           </Section>
         );

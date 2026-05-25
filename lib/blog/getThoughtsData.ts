@@ -4,15 +4,12 @@ import { InfoItem } from "@/types";
 export function getThoughtsData(): InfoItem {
   const posts = getAllPosts();
 
-  const thoughtsLinks = posts.map((post) => ({
-    url: `/thoughts/${post.slug}`,
-    name: post.title,
-    date: post.date,
-  }));
-
   return {
     title: "thoughts",
-    subtitle: "",
-    links: thoughtsLinks,
+    links: posts.map((post) => ({
+      url: `/thoughts/${post.slug}`,
+      name: post.title,
+      date: post.date,
+    })),
   };
 }

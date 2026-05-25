@@ -1,4 +1,4 @@
-// Info section and content related types
+import type { ReactNode } from "react";
 
 export interface Link {
   name: string;
@@ -13,10 +13,14 @@ export interface NomadEntry {
   content: string;
 }
 
+export interface NavigationItem {
+  slug: string;
+  title: string;
+}
+
 export interface InfoItem {
   title: string;
-  content?: string | React.ReactNode;
-  subtitle?: string;
+  content?: ReactNode;
   links?: Link[];
   entries?: NomadEntry[];
 }
@@ -28,5 +32,4 @@ export interface InfoData {
 export interface SocialLink {
   name: string;
   url: string;
-  icon: React.ReactNode;
 }

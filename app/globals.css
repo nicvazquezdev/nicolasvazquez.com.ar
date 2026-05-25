@@ -66,7 +66,6 @@ body {
 .prose-reading h1,
 .prose-reading h2,
 .prose-reading h3 {
-  font-family: var(--font-serif);
   color: #111;
   letter-spacing: -0.005em;
 }
@@ -178,8 +177,3 @@ body {
   line-height: 1.75;
 }
 
-.prose-post h1,
-.prose-post h2,
-.prose-post h3 {
-  font-family: var(--font-reading);
-}
