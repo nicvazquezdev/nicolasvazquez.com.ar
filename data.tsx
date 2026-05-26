@@ -8,7 +8,7 @@ export const infoData: InfoData = {
       <>
         <p>
           i&rsquo;ve been building software for about six years now, currently
-          at <strong>Webflow</strong> working on applied ai. my work there is
+          at <strong>Webflow</strong> working on applied ai. my work here is
           focused on{" "}
           <Link
             href="https://webflow.com/updates/ai-code-components"
