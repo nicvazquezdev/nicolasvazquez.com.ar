@@ -7,7 +7,7 @@ export default function Header() {
       <div className="flex items-baseline justify-between gap-6">
         <Link href="/" className="group">
           <h1 className="text-3xl md:text-4xl font-medium tracking-tight text-[var(--foreground)] leading-none">
-            nicolás vazquez
+            nicolás vázquez
           </h1>
         </Link>
         <SocialLinks />
