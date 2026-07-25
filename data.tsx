@@ -32,8 +32,7 @@ export const infoData: InfoData = {
             </svg>
           </Link>
           , letting people describe interactive components in natural language
-          and have them generated directly inside their webflow site, already
-          styled to match everything around it. before that, i spent a couple
+          and have them generated directly inside their webflow site.
           of years at <strong>Google</strong>.
         </p>
         <p>
@@ -42,8 +41,8 @@ export const infoData: InfoData = {
           spending way too many nights deep in documentation.
         </p>
         <p>
-          for the past couple of years, i&rsquo;ve been working while moving
-          around a lot, usually staying a week or two in one place before
+          for some of years, i&rsquo;ve been working while moving
+          around the world a lot, usually staying a week or two in one place before
           heading somewhere else. i&rsquo;ve done that across more than
           fifteen countries so far. part of it is curiosity. i just enjoy
           waking up somewhere unfamiliar and figuring out the rhythm of a new
