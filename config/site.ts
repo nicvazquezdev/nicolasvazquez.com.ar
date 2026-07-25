@@ -1,15 +1,14 @@
 // Site-wide configuration and metadata constants
 
 export const SITE_CONFIG = {
-  name: "Nicolás Vazquez",
-  title: "nicolás vazquez",
+  name: "Nicolás Vázquez",
+  title: "nicolás vázquez",
   url: "https://nicolasvazquez.com.ar",
   description:
-    "software engineer from buenos aires. notes about systems, the work itself, and the odd places it takes me.",
+    "software engineer from buenos aires. notes about anything that comes to my mind..",
   author: {
-    name: "Nicolás Vazquez",
-    email: "contact@nicolasvazquez.com.ar",
-    twitter: "@nicvazquezdev",
+    name: "Nicolás Vázquez",
+    email: "nicorvazquezs@gmail.com",
     github: "nicvazquezdev",
     linkedin: "nicvazquez",
   },
