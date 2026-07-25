@@ -42,13 +42,13 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   keywords: [
-    "Nicolás Vazquez",
+    "Nicolás Vázquez",
     "software engineer",
     "systems",
     "writing",
     "essays",
     "notes",
-    "buenos aires",
+    "thoughts",
   ],
   authors: [{ name: SITE_CONFIG.name, url: SITE_CONFIG.url }],
   creator: SITE_CONFIG.name,
@@ -124,9 +124,9 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <div className="sr-only">
-          <h1>nicolás vazquez</h1>
+          <h1>nicolás vázquez</h1>
           <p>
-            nicolás vazquez is a software engineer from buenos aires, argentina.
+            nicolás vázquez is a software engineer from buenos aires, argentina.
             he writes notes about systems, engineering, and the work itself.
           </p>
         </div>
