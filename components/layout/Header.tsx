@@ -14,8 +14,7 @@ export default function Header() {
       </div>
 
       <p className="mt-5 text-[18px] md:text-[19px] leading-relaxed text-[var(--muted-strong)]">
-        senior software engineer. i write here about systems, the work itself,
-        and the odd places it takes me. notes more than essays.
+        senior software engineer. i write here about engineering and anything that comes to my mind.
       </p>
     </header>
   );
